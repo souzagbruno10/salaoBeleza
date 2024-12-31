@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento - Studio Sairaf</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"> <!-- Fonte do Google -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif; /* Usando a fonte do Google */
+            background-color: #fce4ec; /* Rosa claro */
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #e91e63; /* Rosa forte */
+            text-align: center;
+            font-size: 72px; /* Aumentando o tamanho da fonte para um logo maior */
+            margin-bottom: 30px;
+            font-weight: 700; /* Peso mais forte, como no Instagram */
+        }
+
+        .container {
+            display: flex;
+            width: 80%; /* Aumentando a largura do container */
+            height: 70vh; /* Ajustando a altura do container */
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Coluna da imagem */
+        .image-column {
+            flex: 1;
+            background-image: url('https://sp-ao.shortpixel.ai/client/q_glossy,ret_img,w_300,h_300/https://sobrancelha.eco.br/wp-content/uploads/2017/09/para-cada-tipo-de-rosto-como-fazer-sozinha-com-l%C3%A1pis-crescer-v%C3%ADdeo-perfeita-arqueada.jpg');
+            background-size: cover;  /* A imagem preenche todo o espaço */
+            background-position: center; /* A imagem é centralizada */
+            border-radius: 10px 0 0 10px;
+        }
+
+        /* Coluna do formulário */
+        .form-column {
+            flex: 1;
+            padding: 40px; /* Aumentando o padding para uma aparência mais equilibrada */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-column h2 {
+            color: #e91e63;
+            font-size: 32px; /* Aumentando o tamanho do título */
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: block;
+            font-weight: 500; /* Peso mais forte, similar ao Instagram */
+        }
+
+        input[type="text"], input[type="date"], input[type="time"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        button:hover {
+            background-color: #c2185b;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Studio Sairaf</h1> <!-- Logo com tamanho aumentado -->
+
+<div class="container">
+    <!-- Coluna de Imagem -->
+    <div class="image-column">
+        <!-- A imagem é agora o fundo da coluna de imagem, sem necessidade de uma tag <img> -->
+    </div>
+
+    <!-- Coluna do Formulário -->
+    <div class="form-column">
+        <h2>Agende seu horário</h2>
+        <form th:action="@{/agendamentos/novo}" th:object="${agendamento}" method="post">
+            <label for="nomeCliente">Nome do Cliente:</label>
+            <input type="text" th:field="*{nomeCliente}" id="nomeCliente" placeholder="Digite seu nome" required />
+
+            <label for="dataHoraAgendamento">Data e Hora do Agendamento:</label>
+            <input type="date" th:field="*{dataHoraAgendamento}" id="data" required />
+            <input type="time" th:field="*{dataHoraAgendamento}" id="hora" required />
+
+            <label for="servico">Serviço:</label>
+            <input type="text" th:field="*{servico}" id="servico" placeholder="Digite o serviço desejado" required />
+
+            <button type="submit">Agendar</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
